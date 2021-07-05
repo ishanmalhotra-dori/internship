@@ -6,7 +6,7 @@ app = Flask(__name__)
 # def upload():  
 #     return render_template("file_upload_form.html")  
  
-@app.route('/success', methods = ['POST'])  
+@app.route('/upload', methods = ['POST'])  
 def success():  
     if request.method == 'POST':  
         f = request.files['files']  

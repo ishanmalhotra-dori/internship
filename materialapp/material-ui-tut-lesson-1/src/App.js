@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Notes from './pages/Notes'
 import Create from './pages/Create'
+import Footer from './pages/StickyFooter'
 
 
 function App() {
@@ -13,6 +14,9 @@ function App() {
         <Route path="/create">
           <Create />
         </Route>
+        <Route path="/stick ">
+          <Footer />
+        </Route> 
       </Switch>
     </Router>
   );
