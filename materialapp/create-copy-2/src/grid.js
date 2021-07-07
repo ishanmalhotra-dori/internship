@@ -55,25 +55,24 @@ export default function NestedGrid() {
   function FormRow() {
     return (
       <React.Fragment>
-        <Grid container direction="column" spacing = {3}>
-        <Grid item xs={4} >
-          {/* <render> {imgSrc} </render> */}
-        <img src = {imgSrc}/> 
+        <Grid container direction = "column" spacing = {3}>
+          <Grid item xs={12} >
+            <img src = {imgSrc}/> 
         
         {/* <Basic /> */}
-        <DropzoneComponent />
-        <div>
-        <strong> Files: </strong>
-        <ul>
-            <li>{fileNames}</li>
-        </ul>
-      </div>
+            <DropzoneComponent />
+            <div>
+            <strong> Files: </strong>
+            <ul>
+                <li>{fileNames}</li>
+            </ul>
+          </div>
+          </Grid>
+        <Grid item xs={12}>
+          <Button variant="contained" type="file" >Select File</Button>
         </Grid>
-        <Grid item xs={4}>
-        <Button variant="contained" type="file" >Select File</Button>
-        </Grid>
-        <Grid item xs={4}>
-        <Button variant="contained" onclick = {handleImageUpload(file)}>Send File</Button>
+        <Grid item xs={12}>
+          <Button variant="contained" onclick = {handleImageUpload(file)}>Send File</Button>
         </Grid>
       
         </Grid>
@@ -84,60 +83,76 @@ export default function NestedGrid() {
     return (
       <React.Fragment>
         <Grid container direction="column" spacing = {3}>
-        <Grid item xs={4} ys={4}>
-        <WebcamCapture />
-        </Grid>
-        <Grid item xs={4}>
-          {/* <Paper className={classes.paper}>Take Screenshot</Paper> */}
-          {/* <Button variant="contained"> Take shot</Button> */}
-        </Grid>
-        <Grid item xs={4}>
-        <Button variant="contained" onClick={()=>{
-          var fl = new File([{imgSrc}],Date.now(),{
-            type: "image/jpeg",
-          });
-          console.log(fl)
-          handleImageUpload(fl)}}> Send Image </Button>
-        </Grid> 
+          <Grid item xs={12}>
+            <WebcamCapture />
+          </Grid>
+          
+          {/* <Grid item xs={8}>
+          <Button variant="contained" onClick={()=>{handleImageUpload()
+        capture()
+          }}>Capture photo</Button>
+            {imgSrc2 && (
+              <img
+                src={imgSrc2}
+              />
+            )}
+        </Grid> */}
+
+          <Grid item xs={12}>
+            <Button variant="contained" onClick={()=>{
+              var fl = new File([{imgSrc}],Date.now(),{
+                type: "image/jpeg",
+              });
+              console.log(fl)
+              handleImageUpload(fl)}}> Send Image </Button>
+          </Grid> 
         </Grid>
       </React.Fragment>
     );
   }
+
+
   function FormRow3() {
     return (
       <React.Fragment>
-        <Grid container direction="column" spacing = {3}>
+        <Grid container direction="column" spacing = {5}>
 
-        <Grid item xs={10}>
-       <Paper variant="elevation">
-          <div border = {true}>
-            <ul>{files}</ul>
-          </div>
-        </Paper>
-        </Grid>
-         <Grid item xs={10}>
-         <Button variant="contained" onClick = {() => { async function hello() {
-            var data = await fetch("http://127.0.0.1:5000/hello-world").then(res => {
-            return res.json();
-            });
-            setServerFiles(data["message"])
-            console.log(data);
+          <Grid item xs={12}>
+            <div>
+            <Paper variant="elevation">
+              <div border = {true}>
+                <ul>{files}</ul>
+              </div>
+            </Paper>
+            </div>
+          </Grid>
 
-          } hello() }} > Call HelloWord API </Button>
-        </Grid> 
-        <Grid item xs={10}>
-        <Button variant="contained" onClick = {() => { 
-            async function fetchData() {
-            var data = await fetch("http://127.0.0.1:5000/access-files").then(res => {
-            return res.json();
-            });
-            setServerFiles(data["Filename"])
-            console.log(data["Filename"])
-          } 
-          fetchData()
-        } 
-        }> Get All Files</Button>
-       </Grid>
+
+          <Grid item xs={12}>
+            <Button variant="contained" onClick = {() => { async function hello() {
+                var data = await fetch("http://127.0.0.1:5000/hello-world").then(res => {
+                return res.json();
+                });
+                setServerFiles(data["message"])
+                console.log(data);
+
+              } hello() }} > Call HelloWord API </Button>
+          </Grid> 
+
+
+          <Grid item xs={12}>
+            <Button variant="contained" onClick = {() => { 
+                async function fetchData() {
+                var data = await fetch("http://127.0.0.1:5000/access-files").then(res => {
+                return res.json();
+                });
+                setServerFiles(data["Filename"])
+                console.log(data["Filename"])
+              } 
+              fetchData()
+            } 
+            }> Get All Files</Button>
+          </Grid>
        
       </Grid>
       </React.Fragment>
@@ -204,12 +219,12 @@ export default function NestedGrid() {
           ref={webcamRef}
           screenshotFormat="image/jpeg"
           mirrored = {true}
-          height={200}
-          width={200}
+          height={160}
+          width={160}
         />
         <Button variant="contained" onClick={()=>{handleImageUpload()
         capture()
-      }}>Capture photo</Button>
+      }}>Capture</Button>
         {imgSrc2 && (
           <img
             src={imgSrc2}
@@ -288,20 +303,24 @@ function Basic(props) {
 
   return (
     <div className={classes.root}>
-      <Grid container direction = "row"> 
+      <Grid container spacing={50} xs={50}> 
         
+        <Grid item xs={4}> 
           <FormRow />
+        </Grid>
 
+        <Grid item xs={4}> 
           <FormRow2 />
-        
-          
-          {/* <div>{imgSrc2}</div> */}
+        </Grid>
+
+        <Grid item xs={4}> 
           <FormRow3 />
+        </Grid>
+
       </Grid>   
          
-    </div>
+  </div>
+
   );
-
-
 
 }
