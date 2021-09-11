@@ -1,0 +1,96 @@
+﻿API Calls:
+
+
+1. import requests
+
+
+url = "http://127.0.0.1:5000/hello-world"
+
+
+payload={}
+files={}
+headers = {}
+
+
+response = requests.request("GET", url, headers=headers, data=payload, files=files)
+
+
+print(response.text)
+
+
+2. 
+
+import requests
+
+
+url = "http://127.0.0.1:5000/get-files"
+
+
+payload={}
+files={}
+headers = {}
+
+
+response = requests.request("GET", url, headers=headers, data=payload, files=files)
+
+
+print(response.text)
+
+
+3. 
+
+import requests
+
+
+url = "http://127.0.0.1:5000/access-files"
+
+
+payload={}
+files={}
+headers = {}
+
+
+response = requests.request("GET", url, headers=headers, data=payload, files=files)
+
+
+print(response.text)
+4. import requests
+
+
+url = "http://127.0.0.1:5000/get-predictions"
+
+
+payload={}
+files=[
+ ('files',('file',open('/path/to/file','rb'),'application/octet-stream'))
+]
+headers = {}
+
+
+response = requests.request("POST", url, headers=headers, data=payload, files=files)
+
+
+print(response.text)
+
+
+5.    
+import requests
+
+
+url = "http://127.0.0.1:5000/upload"
+
+
+payload={}
+files=[
+ ('files',('file',open('/path/to/file','rb'),'application/octet-stream'))
+]
+headers = {}
+
+
+response = requests.request("POST", url, headers=headers, data=payload, files=files)
+
+
+print(response.text)
+
+
+6.
